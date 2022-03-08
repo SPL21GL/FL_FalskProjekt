@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">Schul Id</td>
+            <td scope="col">Adresse</td>
+            <td scope="col">Anzahl Schüler</td>
+            <td scope="col">Name Schule</td>
+            <td scope="col">Schulart</td>
+        </tr>
+    </thead>
+    <tbody>
+        <body style="background-color:rgb(199, 194, 194);">
+        {%for item in items:%}
+            <tr>
+                <td scope="row">{{item.school_Id}}</td>
+                <td>{{item.Adresse}}</td>
+                <td>{{item.Anzahl_Schüler}}</td>
+                <td>{{item.Name_Schule}}</td>
+                <td>{{item.Schulart}}</td>
+
+            </tr> 
+        {%endfor%}
+    </tbody>
+</table>
+
+{%endblock%}
