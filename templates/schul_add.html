@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="post" action = "/schule/add">
+    {{form.csrf_token}}
+
+    
+    <div class="mb-3">
+        <label for="Adresse" class="form-label">Adresse</label>
+        {{form.Adresse()}}
+    </div>
+
+
+
+    <div class="mb-3">
+        <label for="Anzahl_Schüler" class="form-label">Anzahl Schüler</label>
+        {{form.Anzahl_Schüler()}}
+    </div>
+
+
+    <div class="mb-3">
+        <label for="Name_Schule" class="form-label">Name Schule</label>
+        {{form.Name_Schule()}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Schulart" class="form-label">Schulart</label>
+        {{form.Schulart()}}
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}
