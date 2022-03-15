@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="post" action = "/lehrer/add">
+    {{form.csrf_token}}
+
+    
+    <div class="mb-3">
+        <label for="Vorname" class="form-label">Vorname</label>
+        {{form.Vorname()}}
+    </div>
+
+
+
+    <div class="mb-3">
+        <label for="Nachname" class="form-label">Nachname</label>
+        {{form.Nachname()}}
+    </div>
+
+
+    <div class="mb-3">
+        <label for="Faecher_Unterrichtet" class="form-label">Faecher_Unterrichtet</label>
+        {{form.Faecher_Unterrichtet()}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Anzahl_Klassen" class="form-label">Anzahl_Klassen</label>
+        {{form.Anzahl_Klassen()}}
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}
