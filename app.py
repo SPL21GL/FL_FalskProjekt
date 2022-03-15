@@ -4,6 +4,8 @@ import sqlalchemy
 from models import db
 from controller.index import index_blueprint
 from controller.schule import school_blueprint
+from controller.Lehrer import lehrer_blueprint
+from controller.Faecher import faecher_blueprint
 
 
 app = Flask(__name__)
@@ -17,5 +19,7 @@ db.init_app(app)
 session : sqlalchemy.orm.scoped_session = db.session
 
 app.register_blueprint(school_blueprint)
+app.register_blueprint(lehrer_blueprint)
+app.register_blueprint(faecher_blueprint)
 app.register_blueprint(index_blueprint)
 app.run(debug=True)

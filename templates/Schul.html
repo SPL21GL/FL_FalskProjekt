@@ -10,6 +10,7 @@
             <td scope="col">Anzahl Schüler</td>
             <td scope="col">Name Schule</td>
             <td scope="col">Schulart</td>
+            <td scope="col">Action</td>
         </tr>
     </thead>
     <tbody>
@@ -21,10 +22,13 @@
                 <td>{{item.Anzahl_Schüler}}</td>
                 <td>{{item.Name_Schule}}</td>
                 <td>{{item.Schulart}}</td>
+                
 
             </tr> 
+        
         {%endfor%}
     </tbody>
 </table>
+<button type="button"   onclick="window.location.href='/school/add'">add</button>
 
 {%endblock%}

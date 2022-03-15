@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">Lehrer ID</td>
+            <td scope="col">Vorname</td>
+            <td scope="col">Nachname</td>
+            <td scope="col">Faecher Unterrichtet</td>
+            <td scope="col">Anzahl Klassen</td>
+        </tr>
+    </thead>
+    <tbody>
+        <body style="background-color:rgb(199, 194, 194);">
+        {%for item in items:%}
+            <tr>
+                <td scope="row">{{item.Lehrer_Id}}</td>
+                <td>{{item.Vorname}}</td>
+                <td>{{item.Nachname}}</td>
+                <td>{{item.Faecher_Unterrichtet}}</td>
+                <td>{{item.Anzahl_Klassen}}</td>
+
+            </tr> 
+        {%endfor%}
+    </tbody>
+</table>
+
+{%endblock%}

@@ -4,10 +4,10 @@ from flask import Blueprint
 import sqlalchemy
 from models import db,Lehrer
 
-lehrer_blueprint = Blueprint('school_blueprint', __name__)
+lehrer_blueprint = Blueprint('lehrer_blueprint', __name__)
 
 @lehrer_blueprint.route("/lehrer")
 def index():
     session : sqlalchemy.orm.scoping.scoped_session = db.session
-    schools = session.query(School).all()
-    return render_template("schul.html", items = schools)
+    lehrer = session.query(Lehrer).all()
+    return render_template("lehrer.html", items = lehrer)
