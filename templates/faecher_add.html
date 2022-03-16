@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="post" action = "/faecher/add">
+    {{form.csrf_token}}
+
+    
+    <div class="mb-3">
+        <label for="Bezeichnung" class="form-label">Bezeichnung</label>
+        {{form.Bezeichnung()}}
+    </div>
+
+
+    <div class="mb-3">
+        <label for="Farbe" class="form-label">Farbe</label>
+        {{form.Farbe()}}
+    </div>
+
+
+    <div class="mb-3">
+        <label for="description" class="form-label">description</label>
+        {{form.description()}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Lehrraum" class="form-label">Lehrraum</label>
+        {{form.Lehrraum()}}
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}
