@@ -6,3 +6,12 @@ function deleteSchul(button)
         button.form.submit(this);
     }
 }
+
+function deleteLehrer(button)
+{
+    console.log(button)
+    if(window.confirm("Wollen Sie diesne Lehrer wirklich löschen"))
+    {
+        button.form.submit(this);
+    }
+}

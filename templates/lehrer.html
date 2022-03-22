@@ -21,6 +21,20 @@
                 <td>{{item.Nachname}}</td>
                 <td>{{item.Faecher_Unterrichtet}}</td>
                 <td>{{item.Anzahl_Klassen}}</td>
+                <td>
+
+                    <form method="post" action="/lehrer/delete">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <input type="hidden" id="Lehrer_Id" name="Lehrer_Id" value="{{item.Lehrer_Id}}">
+                        <button class="btn btn-info" type="button"   onclick="deleteLehrer(this); return false;">❌</button>
+                    </form>
+                  
+                    
+
+                </td>
+
+            </tr> 
+
 
             </tr> 
         {%endfor%}
