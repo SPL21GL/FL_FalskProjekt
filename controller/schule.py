@@ -3,7 +3,7 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from models import db,School
-from forms.AddschulForm import addSchulForm
+from forms.addSchulForm import AddSchulForm
 from forms.deleteSchulForm import DeleteSchulForm
 
 
@@ -13,7 +13,7 @@ school_blueprint = Blueprint('school_blueprint', __name__)
 def index():
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     schools = session.query(School).all()
-    return render_template("schul.html", items = schools)
+    return render_template("schoolHTML/schul.html", items = schools)
 
 
 @school_blueprint.route("/school/add", methods=["GET","POST"])
@@ -21,7 +21,7 @@ def schools_add():
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     school = session.query(School).order_by(School.school_Id).all()
     
-    adDSchulForm = addSchulForm()
+    adDSchulForm = AddSchulForm()
 
     if request.method == 'POST':
         
@@ -49,7 +49,7 @@ def schools_add():
         else:
             raise "Fatal"
     else:
-         return render_template("schul_add.html",school=school,form = adDSchulForm)
+         return render_template("schoolHTML/schul_add.html",school=school,form = adDSchulForm)
     
 
 #delete

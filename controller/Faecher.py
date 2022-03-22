@@ -12,7 +12,7 @@ faecher_blueprint = Blueprint('faecher_blueprint', __name__)
 def index():
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     faecher = session.query(Faecher).all()
-    return render_template("faecher.html", items = faecher)
+    return render_template("faecherHTML/faecher.html", items = faecher)
 
 @faecher_blueprint.route("/faecher/add", methods=["GET","POST"])
 def addLehrerForm():
@@ -46,7 +46,7 @@ def addLehrerForm():
         else:
             raise "Fatal"
     else:
-        return render_template("faecher_add.html",Faecher=Faecher,form = adDFacherForm)
+        return render_template("faecherHTML/faecher_add.html",Faecher=Faecher,form = adDFacherForm)
 
 @faecher_blueprint.route("/faecher/delete", methods=["post"])
 def deleteFach():
