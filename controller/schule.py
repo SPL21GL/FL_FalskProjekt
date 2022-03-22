@@ -1,9 +1,11 @@
-from flask import Flask,request
+from flask import Flask,request, flash, redirect
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from models import db,School
 from forms.AddschulForm import addSchulForm
+from forms.deleteSchulForm import DeleteSchulForm
+
 
 school_blueprint = Blueprint('school_blueprint', __name__)
 
@@ -41,8 +43,33 @@ def schools_add():
 
             db.session.add(newItem)
             db.session.commit()
-            return render_template("schul_add.html",school=school, form = adDSchulForm)
+            return redirect("/schule")
+           
+        
         else:
             raise "Fatal"
     else:
-        return render_template("schul_add.html",school=school,form = adDSchulForm)
+         return render_template("schul_add.html",school=school,form = adDSchulForm)
+    
+
+#delete
+
+@school_blueprint.route("/schul/delete", methods=["post"])
+def deleteSchul():
+    deleteSchulformObj = DeleteSchulForm()
+    if deleteSchulformObj.validate_on_submit():
+        print("gültig")
+        #db objekt holen
+        #delete command ausführen
+
+        itemIdToDelete = deleteSchulformObj.school_Id.data
+        itemToDelete = db.session.query(School).filter(School.school_Id == itemIdToDelete)
+        itemToDelete.delete()
+        
+        db.session.commit()
+    else:
+        print("Fatal Error")
+    
+    flash(f"Item with id {itemIdToDelete} has been deleted")    
+
+    return redirect("/schule")
