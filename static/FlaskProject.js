@@ -10,7 +10,16 @@ function deleteSchul(button)
 function deleteLehrer(button)
 {
     console.log(button)
-    if(window.confirm("Wollen Sie diesne Lehrer wirklich löschen"))
+    if(window.confirm("Wollen Sie diesen Lehrer wirklich löschen"))
+    {
+        button.form.submit(this);
+    }
+}
+
+function deleteFach(button)
+{
+    console.log(button)
+    if(window.confirm("Wollen Sie dieses Fach wirklich löschen"))
     {
         button.form.submit(this);
     }
