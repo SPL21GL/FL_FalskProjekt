@@ -4,7 +4,7 @@ from wtforms.fields.simple import BooleanField, StringField, TextAreaField, Hidd
 
 class EditFaecherForm(FlaskForm):
     Faecher_Id = HiddenField("Faecher_Id")
-    Bezeichnung = StringField("Bezeichnung")
+    Bzeichnung = StringField("Bzeichnung")
     Farbe = TextAreaField("Farbe")
-    describtion = DateField("describtion")
+    description = StringField("description")
     Lehrraum = StringField("Lehrraum")

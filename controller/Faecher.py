@@ -5,7 +5,7 @@ import sqlalchemy
 from models import Faecher, db,School
 from forms.addFaecherForm import AddFaecherForm
 from forms.deleteFachForm import DeleteFaecherForm
-from forms.editFaecherFrom import EditFaecehrFrom, EditFaecherForm
+from forms.editFaecherFrom import EditFaecherForm
 
 
 faecher_blueprint = Blueprint('faecher_blueprint', __name__)
@@ -80,17 +80,38 @@ def submitEditForm():
         #neuer title -> editItemFormObject.title.data
         #daten mit update in DB speichern
 
-        itemId = editItemFormObject.itemId.data
+        itemId = editItemFormObject.Faecher_Id.data
 
         item_to_edit = db.session.query(Faecher).filter(Faecher.Faecher_Id == itemId).first()
         item_to_edit.Bzeichnung = editItemFormObject.Bzeichnung.data
         item_to_edit.Farbe = editItemFormObject.Farbe.data
-        item_to_edit.describtion = editItemFormObject.describtion.data
+        item_to_edit.description = editItemFormObject.description.data
         item_to_edit.Lehrraum = editItemFormObject.Lehrraum.data
 
 
         db.session.commit()
 
-        return redirect("/")
+        return redirect("/faecher")
     else:
         raise ("Fatal Error")
+
+
+@faecher_blueprint.route("/faecher/edit")
+def showEditForm():
+    #hier itemid auslesen (wie kann man bei flask einen get parameter aus dem request auslesen)
+    Faecher_Id = request.args["Faecher_Id"]
+
+    #item laden (wie kann man einen datensatz lesen)
+    item_to_edit = db.session.query(Faecher).filter(Faecher.Faecher_Id == Faecher_Id).first()
+    
+    editItemFormObject = EditFaecherForm()
+    #form befüllen
+    editItemFormObject.Faecher_Id.data = item_to_edit.Faecher_Id
+    editItemFormObject.Bzeichnung.data = item_to_edit.Bzeichnung
+    editItemFormObject.Farbe.data = item_to_edit.Farbe
+    editItemFormObject.description.data = item_to_edit.description
+    editItemFormObject.Lehrraum.data = item_to_edit.Lehrraum
+    
+    
+    return render_template("faecherHTML/faecherEdit.html", form = editItemFormObject)
+
