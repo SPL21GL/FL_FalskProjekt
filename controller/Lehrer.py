@@ -5,6 +5,7 @@ import sqlalchemy
 from models import db,Lehrer
 from forms.addLehrerForm import AddLehrerForm
 from forms.deleteLehrerForm import DeleteLehrerForm
+from forms.editLehrerForm import EditLehrerForm
 
 lehrer_blueprint = Blueprint('lehrer_blueprint', __name__)
 
@@ -69,3 +70,50 @@ def deleteLehrer():
     flash(f"Item with id {itemIdToDelete} has been deleted")    
 
     return redirect("/lehrer")
+
+
+@lehrer_blueprint.route("/lehrer/edit",methods=["post"])
+def submitEditForm():
+    editItemFormObject = EditLehrerForm()
+
+    if editItemFormObject.validate_on_submit():
+        print("Submit wurde durchgeführt")
+        #daten aus form auslesen
+        #neuer title -> editItemFormObject.title.data
+        #daten mit update in DB speichern
+
+        itemId = editItemFormObject.Lehrer_Id.data
+
+        item_to_edit = db.session.query(Lehrer).filter(Lehrer.Lehrer_Id == itemId).first()
+        item_to_edit.Vorname = editItemFormObject.Vorname.data
+        item_to_edit.Nachname = editItemFormObject.Nachname.data
+        item_to_edit.Faecher_Unterrichtet = editItemFormObject.Faecher_Unterrichtet.data
+        item_to_edit.Anzahl_Klassen = editItemFormObject.Anzahl_Klassen.data
+
+
+        db.session.commit()
+
+        return redirect("/lehrer")
+    else:
+        raise ("Fatal Error")
+
+
+@lehrer_blueprint.route("/lehrer/edit")
+def showEditForm():
+    #hier itemid auslesen (wie kann man bei flask einen get parameter aus dem request auslesen)
+    Lehrer_Id = request.args["Lehrer_Id"]
+
+    #item laden (wie kann man einen datensatz lesen)
+    item_to_edit = db.session.query(Lehrer).filter(Lehrer.Lehrer_Id == Lehrer_Id).first()
+    
+    editItemFormObject = EditLehrerForm()
+    #form befüllen
+    editItemFormObject.Lehrer_Id.data = item_to_edit.Lehrer_Id
+    editItemFormObject.Vorname.data = item_to_edit.Vorname
+    editItemFormObject.Nachname.data = item_to_edit.Nachname
+    editItemFormObject.Faecher_Unterrichtet.data = item_to_edit.Faecher_Unterrichtet
+    editItemFormObject.Anzahl_Klassen.data = item_to_edit.Anzahl_Klassen
+    
+    
+    return render_template("lehrerHTML/lehrerEdit.html", form = editItemFormObject)
+
