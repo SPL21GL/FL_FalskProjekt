@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<style> body{ background-color:rgb(199, 194, 194);}</style>
+
+
+
+<form method="post" action="/schul/edit">
+    <!-- title -->
+    <!-- description -->
+    <!-- dueDate -->
+    <!-- isDone -->
+
+    {{form.csrf_token}}
+    
+    {{form.school_Id()}}
+
+    <div class="row mb-3">
+        <label for="Adresse" class="col-sm-2 col-form-label">Adresse</label>
+        <div class="col-sm-10">
+            {{form.Adresse()}}
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="Anzahl_Schüler" class="col-sm-2 col-form-label">Anzahl_Schüler</label>
+        <div class="col-sm-10">
+            {{form.Anzahl_Schüler()}}
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="Name_Schule" class="col-sm-2 col-form-label">Name_Schule</label>
+        <div class="col-sm-10">
+            {{form.Name_Schule()}}
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="Schulart" class="col-sm-2 col-form-label">Schulart</label>
+        <div class="col-sm-10">
+            {{form.Schulart()}}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+{%endblock body%}

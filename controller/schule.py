@@ -5,6 +5,7 @@ import sqlalchemy
 from models import db,School
 from forms.addSchulForm import AddSchulForm
 from forms.deleteSchulForm import DeleteSchulForm
+from forms.editSchulForm import EditSchulForm
 
 
 school_blueprint = Blueprint('school_blueprint', __name__)
@@ -73,3 +74,49 @@ def deleteSchul():
     flash(f"Item with id {itemIdToDelete} has been deleted")    
 
     return redirect("/schule")
+
+@school_blueprint.route("/schul/edit",methods=["post"])
+def submitEditForm():
+    editItemFormObject = EditSchulForm()
+
+    if editItemFormObject.validate_on_submit():
+        print("Submit wurde durchgeführt")
+        #daten aus form auslesen
+        #neuer title -> editItemFormObject.title.data
+        #daten mit update in DB speichern
+
+        itemId = editItemFormObject.school_Id.data
+
+        item_to_edit = db.session.query(School).filter(School.school_Id == itemId).first()
+        item_to_edit.Adresse = editItemFormObject.Adresse.data
+        item_to_edit.Anzahl_Schüler = editItemFormObject.Anzahl_Schüler.data
+        item_to_edit.Name_Schule = editItemFormObject.Name_Schule.data
+        item_to_edit.Schulart = editItemFormObject.Schulart.data
+
+
+        db.session.commit()
+
+        return redirect("/schule")
+    else:
+        raise ("Fatal Error")
+
+
+@school_blueprint.route("/schul/edit")
+def showEditForm():
+    #hier itemid auslesen (wie kann man bei flask einen get parameter aus dem request auslesen)
+    school_Id = request.args["school_Id"]
+
+    #item laden (wie kann man einen datensatz lesen)
+    item_to_edit = db.session.query(School).filter(School.school_Id == school_Id).first()
+    
+    editItemFormObject = EditSchulForm()
+    #form befüllen
+    editItemFormObject.school_Id.data = item_to_edit.school_Id
+    editItemFormObject.Adresse.data = item_to_edit.Adresse
+    editItemFormObject.Anzahl_Schüler.data = item_to_edit.Anzahl_Schüler
+    editItemFormObject.Name_Schule.data = item_to_edit.Name_Schule
+    editItemFormObject.Schulart.data = item_to_edit.Schulart
+    
+    
+    return render_template("schoolHTML/schulEdit.html", form = editItemFormObject)
+
