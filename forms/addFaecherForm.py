@@ -5,7 +5,7 @@ from wtforms.fields import DecimalField
 from wtforms import validators
 
 class AddFaecherForm(FlaskForm):
-    Bzeichnung = StringField("Bezeichnung")
-    Farbe = StringField("Farbe")
-    description = StringField("description")
-    Lehrraum = DecimalField("Lehrraum")
+    Bzeichnung = StringField("Bezeichnung", validators = [validators.InputRequired()])
+    Farbe = StringField("Farbe", validators = [validators.InputRequired()])
+    description = StringField("description", validators = [validators.InputRequired()])
+    Lehrraum = DecimalField("Lehrraum", validators = [validators.InputRequired()])
