@@ -1,4 +1,4 @@
-from flask import Flask,request, flash, redirect
+from flask import Flask,request, flash, redirect, session
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
@@ -6,15 +6,22 @@ from models import db,School
 from forms.addSchulForm import AddSchulForm
 from forms.deleteSchulForm import DeleteSchulForm
 from forms.editSchulForm import EditSchulForm
-
+import sqlalchemy.orm 
 
 school_blueprint = Blueprint('school_blueprint', __name__)
-
 @school_blueprint.route("/schule")
-def index():
-    session : sqlalchemy.orm.scoping.scoped_session = db.session
-    schools = session.query(School).all()
-    return render_template("schoolHTML/schul.html", items = schools)
+def schulenLoad():
+    
+    page = request.args.get('page', 1, type=int)
+    #session : sqlalchemy.orm.Session = db.session
+    #schools = session.query(School).
+    session: sqlalchemy.orm.scoping.scoped_session = db.session
+    schools = session.query(School).order_by(School.school_Id).paginate(page,5,error_out=False)
+  
+    return render_template('schoolHTML/Schul.html', paginator=schools)
+
+
+   
 
 
 @school_blueprint.route("/school/add", methods=["GET","POST"])
@@ -120,3 +127,14 @@ def showEditForm():
     
     return render_template("schoolHTML/schulEdit.html", form = editItemFormObject)
 
+
+#
+#@school_blueprint.route('/schule')
+
+#def schulenPaging():
+ #   # Set the pagination configuration
+  #  page = request.args.get('page', 1, type=int)
+#
+ #   schulen = School.query.paginate(page=page, per_page=ROWS_PER_PAGE)
+  #  print(schulen)
+   # return render_template('schoolHTML/Schul.html', schulen=schulen)

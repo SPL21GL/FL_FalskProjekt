@@ -2,7 +2,7 @@
 
 {%block body%}
 
-<button type="button"   onclick="window.location.href='/lehrer/add'">add</button>
+<button type="button" class="btn btn-dark"   onclick="window.location.href='/lehrer/add'">add</button>
 
 <table class="table">
     <thead>
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <body style="background-color:rgb(199, 194, 194);">
-        {%for item in items:%}
+        {%for item in item.items:%}
             <tr>
                 <td scope="row">{{item.Lehrer_Id}}</td>
                 <td>{{item.Vorname}}</td>
