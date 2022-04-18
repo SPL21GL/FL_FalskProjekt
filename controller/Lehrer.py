@@ -10,10 +10,15 @@ from forms.editLehrerForm import EditLehrerForm
 lehrer_blueprint = Blueprint('lehrer_blueprint', __name__)
 
 @lehrer_blueprint.route("/lehrer")
-def index():
-    session : sqlalchemy.orm.scoping.scoped_session = db.session
-    lehrer = session.query(Lehrer).all()
-    return render_template("lehrerHTML/lehrer.html", items = lehrer)
+def lehrerLoad():
+    
+    page = request.args.get('page', 1, type=int)
+    #session : sqlalchemy.orm.Session = db.session
+    #schools = session.query(School).
+    session: sqlalchemy.orm.scoping.scoped_session = db.session
+    lehrer = session.query(Lehrer).order_by(Lehrer.Lehrer_Id).paginate(page,5,error_out=False)
+  
+    return render_template('lehrerHTML/lehrer.html', paginator=lehrer)
 
 @lehrer_blueprint.route("/lehrer/add", methods=["GET","POST"])
 def addLehrerForm():

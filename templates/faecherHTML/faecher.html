@@ -27,10 +27,10 @@
                     <form method="post" action="/faecher/delete">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <input type="hidden" id="Faecher_Id" name="Faecher_Id" value="{{item.Faecher_Id}}">
-                        <button class="btn btn-info" type="button"   onclick="deleteFach(this); return false;">❌</button>
+                        <button class="btn btn-info" type="button"   onclick="deleteFach(this); return false;">❌</button>  <button type="button" class="btn btn-warning" onclick="window.location.href='/faecher/edit?Faecher_Id={{item.Faecher_Id}}'">✏️</button>
                     </form>
                     
-                    <button type="button" class="btn btn-warning" onclick="window.location.href='/faecher/edit?Faecher_Id={{item.Faecher_Id}}'">✏️</button>
+                  
                     
 
                 </td>
