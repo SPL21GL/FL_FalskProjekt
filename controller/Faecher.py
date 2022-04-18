@@ -6,30 +6,10 @@ from models import Faecher, db
 from forms.addFaecherForm import AddFaecherForm
 from forms.deleteFachForm import DeleteFaecherForm
 from forms.editFaecherFrom import EditFaecherForm
-from flask import Flask, request, jsonify, Response
-from flask import Blueprint
-from functools import wraps
-
 
 faecher_blueprint = Blueprint('faecher_blueprint', __name__)
 
-def check(username, password):
-    return username == "admin" and password == "3bhwii1"
-
-def auth():
-    return Response('Please login!', 401, {'WWW-Authenticate': 'Basic real="Login Required"'})
-
-def requires_auth(f):
-    @wraps(f)
-    def deco(*args, **kwargs):
-        autho = request.authorization
-        if not autho or not check(autho.username, autho.password):
-            return auth()
-        return f(*args, ** kwargs)
-    return deco
-
 @faecher_blueprint.route("/faecher")
-@requires_auth
 def faecherLoad():
     
     page = request.args.get('page', 1, type=int)
