@@ -10,6 +10,7 @@ from flask_wtf.csrf import CSRFProtect
 
 
 
+
 app = Flask(__name__)
 app.secret_key = "VerySecretSecretKey"
 
@@ -20,8 +21,11 @@ db.init_app(app)
 
 session : sqlalchemy.orm.scoped_session = db.session
 
+
+
 app.register_blueprint(school_blueprint)
 app.register_blueprint(lehrer_blueprint)
 app.register_blueprint(faecher_blueprint)
 app.register_blueprint(index_blueprint)
 app.run(debug=True)
+
