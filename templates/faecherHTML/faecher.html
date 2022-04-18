@@ -15,7 +15,7 @@
     </thead>
     <tbody>
         <body style="background-color:rgb(199, 194, 194);">
-        {%for item in items:%}
+        {%for item in paginator.items:%}
             <tr>
                 <td scope="row">{{item.Faecher_Id}}</td>
                 <td>{{item.Bzeichnung}}</td>
@@ -42,6 +42,42 @@
         {%endfor%}
     </tbody>
 </table>
+
+<!-- Pagination Links-->
+<div class="text-right">
+    <a href="{{ url_for('faecher_blueprint.faecherLoad', page=paginator.prev_num) }}"
+       class="btn btn-outline-dark 
+       {% if paginator.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+<!-- Loop through the number of pages to display a link for each-->
+    {% for page_num in paginator.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+<!-- Check for the active page and set the link to "Active"-->
+            {% if paginator.page == page_num %}
+            <a href="{{ url_for('faecher_blueprint.faecherLoad', page=page_num) }}"
+               class="btn btn-dark">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('faecher_blueprint.faecherLoad', page=page_num) }}"
+               class="btn btn-outline-dark">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('faecher_blueprint.faecherLoad', page=paginator.next_num) }}"
+       class="btn btn-outline-dark 
+       {% if paginator.page == paginator.pages %}disabled{% endif %}">
+        &raquo;
+    </a>
+</div>
+<p class="text-right mt-3">
+   Showing page {{ paginator.page }} of {{ paginator.pages }}
+</p>
 
 
 {%endblock%}

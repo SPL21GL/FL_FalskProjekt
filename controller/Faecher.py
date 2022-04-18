@@ -11,10 +11,15 @@ from forms.editFaecherFrom import EditFaecherForm
 faecher_blueprint = Blueprint('faecher_blueprint', __name__)
 
 @faecher_blueprint.route("/faecher")
-def index():
-    session : sqlalchemy.orm.scoping.scoped_session = db.session
-    faecher = session.query(Faecher).all()
-    return render_template("faecherHTML/faecher.html", items = faecher)
+def faecherLoad():
+    
+    page = request.args.get('page', 1, type=int)
+    #session : sqlalchemy.orm.Session = db.session
+    #schools = session.query(School).
+    session: sqlalchemy.orm.scoping.scoped_session = db.session
+    faecher = session.query(Faecher).order_by(Faecher.Faecher_Id).paginate(page,5,error_out=False)
+  
+    return render_template('faecherHTML/faecher.html', paginator=faecher)
 
 @faecher_blueprint.route("/faecher/add", methods=["GET","POST"])
 def addLehrerForm():
