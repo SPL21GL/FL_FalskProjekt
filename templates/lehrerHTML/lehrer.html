@@ -30,7 +30,7 @@
                     <form method="post" action="/lehrer/delete">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <input type="hidden" id="Lehrer_Id" name="Lehrer_Id" value="{{item.Lehrer_Id}}">
-                        <button class="btn btn-info" type="button"   onclick="deleteLehrer(this); return false;">❌</button> <button type="button" class="btn btn-warning" onclick="window.location.href='/lehrer/edit?Lehrer_Id={{item.Lehrer_Id}}'">✏️</button>
+                        <button class="btn btn-info" type="button"   onclick="deleteLehrer(this); return false;">❌</button> <button type="button" class="btn btn-light" onclick="window.location.href='/lehrer/edit?Lehrer_Id={{item.Lehrer_Id}}'">✏️</button>
                     </form>
                   
                    
