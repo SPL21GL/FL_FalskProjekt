@@ -11,7 +11,7 @@ from functools import wraps
 index_blueprint = Blueprint('index_blueprint', __name__)
 
 def check(username, password):
-    return username == "admin" and password == "3bhwii11"
+    return username == "admin" and password == "3bhwii111"
 
 def auth():
     return Response('Please login!', 401, {'WWW-Authenticate': 'Basic real="Login Required"'})
@@ -28,5 +28,5 @@ def requires_auth(f):
 @index_blueprint.route("/", methods=["get","post"])
 @requires_auth
 def index():
-    return render_template("base.html",headline = "SchulDb")
+    return render_template("base.html")
 
