@@ -60,3 +60,4 @@ class SchuleLehrer(db.Model):
 
     lehrer = db.relationship('Lehrer', primaryjoin='SchuleLehrer.Lehrer_Id == Lehrer.Lehrer_Id', backref='schule_lehrers')
     school = db.relationship('School', primaryjoin='SchuleLehrer.school_Id == School.school_Id', backref='schule_lehrers')
+
