@@ -61,3 +61,11 @@ class SchuleLehrer(db.Model):
     lehrer = db.relationship('Lehrer', primaryjoin='SchuleLehrer.Lehrer_Id == Lehrer.Lehrer_Id', backref='schule_lehrers')
     school = db.relationship('School', primaryjoin='SchuleLehrer.school_Id == School.school_Id', backref='schule_lehrers')
 
+
+
+class User(db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(255), nullable=False)
