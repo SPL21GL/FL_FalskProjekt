@@ -5,7 +5,7 @@ from wtforms.fields import DecimalField
 from wtforms import validators
 
 class AddSchulForm(FlaskForm):
-    Adresse = StringField("Adresse")
-    Anzahl_Schüler = DecimalField("Anzahl Schüler")
-    Name_Schule = StringField("Name Schule")
-    Schulart = StringField("Schulart")
+    Adresse = StringField("Adresse", validators = [validators.InputRequired()])
+    Anzahl_Schüler = DecimalField("Anzahl Schüler", validators = [validators.InputRequired()])
+    Name_Schule = StringField("Name Schule", validators = [validators.InputRequired()])
+    Schulart = StringField("Schulart", validators = [validators.InputRequired()])
