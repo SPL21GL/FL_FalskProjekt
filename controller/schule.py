@@ -3,7 +3,7 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from models import Lehrer, SchuleLehrer, db, School
-from forms.addSchulForm import AddSchulForm
+from forms.AddschulForm import AddSchulForm
 from forms.deleteSchulForm import DeleteSchulForm
 from forms.editSchulForm import EditSchulForm
 import sqlalchemy.orm
