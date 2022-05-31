@@ -45,7 +45,7 @@ class School(db.Model):
 
     school_Id = db.Column(db.Integer, primary_key=True, unique=True)
     Adresse = db.Column(db.String(255))
-    Anzahl_Schüler = db.Column(db.Integer)
+    Anzahl_Schueler = db.Column(db.Integer)
     Name_Schule = db.Column(db.String(255))
     Schulart = db.Column(db.String(255))
 

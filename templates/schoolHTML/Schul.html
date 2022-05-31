@@ -4,7 +4,7 @@
 
 
 <div class="d-grid gap-2">
-    <button class="btn btn-primary" type="button"onclick="window.location.href='/school/add'">add</button>
+    <button class="btn btn-secondary" type="button"onclick="window.location.href='/school/add'">add</button>
   </div>
 <!--
 <table class="table">
@@ -54,7 +54,7 @@
             <tr>
                 <td scope="col">Schul Id</td>
                 <td scope="col">Adresse</td>
-                <td scope="col">Anzahl Schüler</td>
+                <td scope="col">Anzahl Schueler</td>
                 <td scope="col">Name Schule</td>
                 <td scope="col">Schulart</td>
                 <td scope="col">Action</td>
@@ -66,7 +66,7 @@
                 <tr>
                     <td scope="row">{{item.school_Id}}</td>
                     <td>{{item.Adresse}}</td>
-                    <td>{{item.Anzahl_Schüler}}</td>
+                    <td>{{item.Anzahl_Schueler}}</td>
                     <td>{{item.Name_Schule}}</td>
                     <td>{{item.Schulart}}</td>
                     <td>
@@ -74,7 +74,7 @@
                         <form method="post" action="/schul/delete">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                             <input type="hidden" id="school_Id" name="school_Id" value="{{item.school_Id}}">
-                            <button class="btn btn-info" type="button"   onclick="deleteSchul(this); return false;">❌</button> <button type="button" class="btn btn-light" onclick="window.location.href='/schul/edit?school_Id={{item.school_Id}}'">✏️</button>
+                            <button class="btn btn-secondary" type="button"   onclick="deleteSchul(this); return false;">❌</button> <button type="button" class="btn btn-light" onclick="window.location.href='/schul/edit?school_Id={{item.school_Id}}'">✏️</button>
                         </form>
                       
                        

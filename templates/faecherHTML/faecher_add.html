@@ -5,12 +5,13 @@
 <form method="post" action = "/faecher/add">
     {{form.csrf_token}}
 
-    
-    <div class="mb-3">
-        <label for="Bezeichnung" class="lable-name">Bezeichnung</label>
-        {{form.Bzeichnung()}}
-    </div>
 
+
+    <div class="mb-3">
+        <label for="Bezeichnung" class="form-lable">Bezeichnung
+        {{form.Bzeichnung()}}
+        
+    </div>
 
     <div class="mb-3">
         <label for="Farbe" class="form-label">Farbe</label>
@@ -32,6 +33,10 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+
+
+
+<style></style>
 
 
 {%endblock%}

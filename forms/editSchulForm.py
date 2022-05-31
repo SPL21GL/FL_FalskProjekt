@@ -6,6 +6,6 @@ from wtforms.fields import DecimalField
 class EditSchulForm(FlaskForm):
     school_Id = HiddenField("school_Id")
     Adresse = StringField("Adresse")
-    Anzahl_Schüler = DecimalField("Anzahl_Schüler")
+    Anzahl_Schueler = DecimalField("Anzahl_Schüler")
     Name_Schule = StringField("Name_Schule")
     Schulart = StringField("Schulart")
