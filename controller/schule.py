@@ -1,4 +1,4 @@
-from flask import Flask, request, flash, redirect, session
+from flask import Flask, request, flash, redirect
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
@@ -15,7 +15,7 @@ school_blueprint = Blueprint('school_blueprint', __name__)
 def schulenLoad():
 
     page = request.args.get('page', 1, type=int)
-    #session : sqlalchemy.orm.Session = db.session
+    # session : sqlalchemy.orm.Session = db.session
     # schools = session.query(School).
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     schools = session.query(School).order_by(
@@ -136,14 +136,3 @@ def showEditForm():
 
     return render_template("schoolHTML/schulEdit.html", form=editItemFormObject)
 
-
-#
-# @school_blueprint.route('/schule')
-
-# def schulenPaging():
- #   # Set the pagination configuration
-  #  page = request.args.get('page', 1, type=int)
-#
- #   schulen = School.query.paginate(page=page, per_page=ROWS_PER_PAGE)
-  #  print(schulen)
-   # return render_template('schoolHTML/Schul.html', schulen=schulen)

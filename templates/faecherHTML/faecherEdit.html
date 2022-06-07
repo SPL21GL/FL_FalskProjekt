@@ -47,45 +47,6 @@
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
-<br></br>
-<br></br>
-
-<h2>Lehrer</h2>
-
-<a href="/lehrer/add" class="btn btn-outline-success">➕ Add New Lehrer</a>
-
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Vorname</th>
-        <th scope="col">Nachname</th>
-        <th scope="col">Faecher_Unterrichtet</th>
-        <th scope="col">Anzahl_Klassen</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-    {%for item in items:%}
-        <tr>
-            <td scope="row">{{item.Lehrer_Id}}</td>
-            <td>{{item.Vorname}}</td>
-            <td>{{item.Nachname}}</td>
-            <td>{{item.Faecher_Unterrichtet}}</td>
-            <td>{{item.Anzahl_Klassen}}</td>
-            <td>
-                <a class="btn btn-outline-secondary" href='/lehrer/edit?Lehrer_Id={{item.Lehrer_Id}}'>✏️</a>
-                <form action="/lehrer/delete" method="post" style="display: inline;">
-                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                  <input type="hidden" name="Faecher_Id" id="Faecher_Id" value="{{item.Faecher_Id}}">
-                  <input type="hidden" name="Lehrer_Id" id="productCLehrer_Idode" value="{{item.Lehrer_Id}}">
-                  <a class="btn btn-outline-secondary" href="#" onclick="deleteLehrer(this); return false;">❌</a>
-                </form>
-              </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
 
 
 {%endblock body%}

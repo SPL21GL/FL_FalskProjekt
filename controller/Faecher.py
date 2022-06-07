@@ -14,8 +14,6 @@ faecher_blueprint = Blueprint('faecher_blueprint', __name__)
 def faecherLoad():
 
     page = request.args.get('page', 1, type=int)
-    #session : sqlalchemy.orm.Session = db.session
-    # schools = session.query(School).
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     faecher = session.query(Faecher).order_by(
         Faecher.Faecher_Id).paginate(page, 5, error_out=False)
