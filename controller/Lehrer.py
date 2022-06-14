@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, flash
+from flask import request, redirect, flash
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
@@ -14,7 +14,7 @@ lehrer_blueprint = Blueprint('lehrer_blueprint', __name__)
 def lehrerLoad():
 
     page = request.args.get('page', 1, type=int)
-    #session : sqlalchemy.orm.Session = db.session
+    # session : sqlalchemy.orm.Session = db.session
     # schools = session.query(School).
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     lehrer = session.query(Lehrer).order_by(
@@ -26,7 +26,7 @@ def lehrerLoad():
 @lehrer_blueprint.route("/lehrer/add", methods=["GET", "POST"])
 def addLehrerForm():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
-    teacher = session.query(Lehrer).order_by(Lehrer.Lehrer_Id).all()
+    session.query(Lehrer).order_by(Lehrer.Lehrer_Id).all()
 
     adDTeacherForm = AddLehrerForm()
 

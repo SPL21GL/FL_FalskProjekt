@@ -1,8 +1,8 @@
-from flask import Flask, request, flash, redirect
+from flask import request, flash, redirect
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
-from models import Lehrer, SchuleLehrer, db, School
+from models import db, School
 from forms.AddschulForm import AddSchulForm
 from forms.deleteSchulForm import DeleteSchulForm
 from forms.editSchulForm import EditSchulForm
@@ -135,4 +135,3 @@ def showEditForm():
     editItemFormObject.Schulart.data = item_to_edit.Schulart
 
     return render_template("schoolHTML/schulEdit.html", form=editItemFormObject)
-

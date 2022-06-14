@@ -5,7 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-
 class Faecher(db.Model):
     __tablename__ = 'faecher'
 
@@ -14,7 +13,6 @@ class Faecher(db.Model):
     Farbe = db.Column(db.String(64))
     description = db.Column(db.Text)
     Lehrraum = db.Column(db.Integer)
-
 
 
 class Lehrer(db.Model):
@@ -27,7 +25,6 @@ class Lehrer(db.Model):
     Anzahl_Klassen = db.Column(db.Integer)
 
 
-
 class LehrerFach(db.Model):
     __tablename__ = 'lehrer_fach'
 
@@ -35,9 +32,10 @@ class LehrerFach(db.Model):
     Lehrer_Id = db.Column(db.ForeignKey('lehrer.Lehrer_Id'), index=True)
     Faecher_Id = db.Column(db.ForeignKey('faecher.Faecher_Id'), index=True)
 
-    faecher = db.relationship('Faecher', primaryjoin='LehrerFach.Faecher_Id == Faecher.Faecher_Id', backref='lehrer_faches')
-    lehrer = db.relationship('Lehrer', primaryjoin='LehrerFach.Lehrer_Id == Lehrer.Lehrer_Id', backref='lehrer_faches')
-
+    faecher = db.relationship(
+        'Faecher', primaryjoin='LehrerFach.Faecher_Id == Faecher.Faecher_Id', backref='lehrer_faches')
+    lehrer = db.relationship(
+        'Lehrer', primaryjoin='LehrerFach.Lehrer_Id == Lehrer.Lehrer_Id', backref='lehrer_faches')
 
 
 class School(db.Model):
@@ -50,7 +48,6 @@ class School(db.Model):
     Schulart = db.Column(db.String(255))
 
 
-
 class SchuleLehrer(db.Model):
     __tablename__ = 'schule_lehrer'
 
@@ -58,9 +55,10 @@ class SchuleLehrer(db.Model):
     school_Id = db.Column(db.ForeignKey('school.school_Id'), index=True)
     Lehrer_Id = db.Column(db.ForeignKey('lehrer.Lehrer_Id'), index=True)
 
-    lehrer = db.relationship('Lehrer', primaryjoin='SchuleLehrer.Lehrer_Id == Lehrer.Lehrer_Id', backref='schule_lehrers')
-    school = db.relationship('School', primaryjoin='SchuleLehrer.school_Id == School.school_Id', backref='schule_lehrers')
-
+    lehrer = db.relationship(
+        'Lehrer', primaryjoin='SchuleLehrer.Lehrer_Id == Lehrer.Lehrer_Id', backref='schule_lehrers')
+    school = db.relationship(
+        'School', primaryjoin='SchuleLehrer.school_Id == School.school_Id', backref='schule_lehrers')
 
 
 class User(db.Model):

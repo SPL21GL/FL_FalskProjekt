@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, flash
+from flask import request, redirect, flash
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
@@ -24,7 +24,7 @@ def faecherLoad():
 @faecher_blueprint.route("/faecher/add", methods=["GET", "POST"])
 def addLehrerForm():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
-    faecher = session.query(Faecher).order_by(Faecher.Faecher_Id).all()
+    session.query(Faecher).order_by(Faecher.Faecher_Id).all()
 
     adDFacherForm = AddFaecherForm()
 

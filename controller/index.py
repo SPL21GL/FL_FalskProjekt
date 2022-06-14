@@ -1,10 +1,6 @@
-from flask import Flask
 from flask.templating import render_template
 from flask import Blueprint
-import sqlalchemy
-from models import db
-from flask import request, jsonify, Response
-from flask import Blueprint
+from flask import request, Response
 from functools import wraps
 from models import db, User
 

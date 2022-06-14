@@ -47,4 +47,51 @@
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
+
+<br></br>
+<br></br>
+
+
+<!-- h2>Lehrer:</h2>
+<a href="/schule_lehrer/add?school_Id={{form.school_Id.data}}" class="btn btn-outline-success">➕ Add New Lehrer</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">Lehrer ID</td>
+            <td scope="col">Vorname</td>
+            <td scope="col">Nachname</td>
+            <td scope="col">Faecher Unterrichtet</td>
+            <td scope="col">Anzahl Klassen</td>
+        </tr>
+    </thead>
+    <tbody>
+        <body style="background-color:rgb(199, 194, 194);">
+        {%for item in items:%}
+            <tr>
+                <td scope="row">{{item.Lehrer_Id}}</td>
+                <td>{{item.Vorname}}</td>
+                <td>{{item.Nachname}}</td>
+                <td>{{item.Faecher_Unterrichtet}}</td>
+                <td>{{item.Anzahl_Klassen}}</td>
+                <td>
+
+                    <form method="post" action="/lehrer/delete">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <input type="hidden" id="Lehrer_Id" name="Lehrer_Id" value="{{item.Lehrer_Id}}">
+                        <button class="btn btn-secondary" type="button"   onclick="deleteLehrer(this); return false;">❌</button> <button type="button" class="btn btn-light" onclick="window.location.href='/lehrer/edit?Lehrer_Id={{item.Lehrer_Id}}'">✏️</button>
+                    </form>
+                  
+                   
+
+                </td>
+
+            </tr> 
+
+
+            </tr> 
+        {%endfor%}
+    </tbody>
+</table> -->
+
 {%endblock body%}
