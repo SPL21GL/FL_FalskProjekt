@@ -11,37 +11,16 @@ from models import SchuleLehrer, Lehrer, db
 
 orderdetails_blueprint = Blueprint('orderdetails_blueprint', __name__)
 
-
-@orderdetails_blueprint.route("/orderdetails/edit", methods=["GET", "POST"])
-def orders_edit():
+@orderdetails_blueprint.route("/schule_lehrer/add", methods=["GET", "POST"])
+def add_teacher():
+    school_Id = int(request.args["school_Id"])
     session: sqlalchemy.orm.scoping.scoped_session = db.session
+    session.query(Lehrer).order_by(Lehrer.Lehrer_Id).all()
 
-    order_detail_form = OrderdetailForm()
-    products = session.query(Lehrer).order_by(Lehrer.Lehrer_Id).all()
-    product_list = [(str(p.Lehrer_Id), p.Nachname)
-                    for p in products]
-    order_detail_form.Lehrer_Id.choices = product_list
+    Lehrer.Lehrer_Id.choices = [(c.Lehrer_Id, c.Nachname) for c in Lehrer.Lehrer_Id.query.all()]
 
-    order_number = int(request.args["Lehrer_Id"])
-    product_code = request.args["Lehrer_Id"]
-    order_detail_form.Lehrer_Id.choices
-    order_detail_query: sqlalchemy.orm.query.Query = session.query(SchuleLehrer)
-    order_detail_to_edit: SchuleLehrer = order_detail_query.filter(
-        sqlalchemy.and_(
-            SchuleLehrer.Nachname == order_number))
+    return redirect('schuleLehrer/schuleLehreradd.html')
 
-    if request.method == "POST":
-        if order_detail_form.validate_on_submit():
-
-            order_detail_to_edit.Nachname = order_detail_form.Nachname.data
-
-            db.session.commit()
-            return redirect("/lehrer/edit?Lehrer_Id=" + str(order_number))
-
-    else:
-        order_detail_form.Nachname.data = order_detail_to_edit.Nachname
-
-        return render_template("schuleLehrer/schuleLehrerEdit.html", form=order_detail_form)
 
 
 @orderdetails_blueprint.route("/orderdetails/delete", methods=["post"])
