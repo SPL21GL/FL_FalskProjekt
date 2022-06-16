@@ -5,6 +5,7 @@ from controller.index import index_blueprint
 from controller.schule import school_blueprint
 from controller.Lehrer import lehrer_blueprint
 from controller.Faecher import faecher_blueprint
+from controller.schule_lehrer import orderdetails_blueprint
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -23,4 +24,5 @@ app.register_blueprint(school_blueprint)
 app.register_blueprint(lehrer_blueprint)
 app.register_blueprint(faecher_blueprint)
 app.register_blueprint(index_blueprint)
+app.register_blueprint(orderdetails_blueprint)
 app.run(debug=True)
